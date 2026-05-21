@@ -1,0 +1,35 @@
+name: Autograding Tests
+'on':
+- push
+- repository_dispatch
+permissions:
+  checks: write
+  actions: read
+  contents: read
+jobs:
+  run-autograding-tests:
+    runs-on: ubuntu-latest
+    if: github.actor != 'github-classroom[bot]'
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: test1-1
+      id: test1-1
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: test1-1
+        setup-command: cd code; gcc ./1-1.c -o a
+        command: "./a ./myfile.txt"
+        input: ''
+        expected-output: 'The sun rose slowly over the distant mountains, 
+
+          '
+        comparison-method: contains
+        timeout: 10
+        max-score: 1
+    - name: Autograding Reporter
+      uses: classroom-resources/autograding-grading-reporter@v1
+      env:
+        TEST1-1_RESULTS: "${{steps.test1-1.outputs.result}}"
+      with:
+        runners: test1-1
