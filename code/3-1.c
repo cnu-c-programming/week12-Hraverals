@@ -8,7 +8,7 @@ int main(int argc, const char* argv[]) {
 
     if (fp == NULL) {
         // perror("file does not exists");
-        fprintf(stderr, "file does not exists");
+        fprintf(stderr, "file dose not exists");
         return 1;
     }
 
