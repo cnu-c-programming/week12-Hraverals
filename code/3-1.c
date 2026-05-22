@@ -12,5 +12,6 @@ int main(int argc, const char* argv[]) {
         return 1;
     }
 
+    fclose(fp);
     return 0;
 }
