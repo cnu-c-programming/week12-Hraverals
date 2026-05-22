@@ -1,7 +1,6 @@
 #include <stdio.h>
 
 int main(int argc, const char* argv[]) {
-    
     if (argc < 2)
         return 0;
     
@@ -9,16 +8,15 @@ int main(int argc, const char* argv[]) {
     char buffer[10] = {0};
 
     FILE* fp = fopen(filename, "r");
-
     if (fp == NULL) {
-        return 0;
+        perror("error: cannot open");
+        return 1;
     }
 
-    fscanf(fp, "%s", buffer);
+    if (fgets(buffer, sizeof(buffer), fp) != NULL) {
+        printf("%s\n", buffer);
+    }
+
     fclose(fp);
-
-    printf("%s\n", buffer);
-
     return 0;
 }
-

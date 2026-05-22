@@ -20,7 +20,7 @@ int main(int argc, const char* argv[]) {
     int max = 0;
     float avg = 0;
 
-    for (int i = 0; i < count - 1; i++) {
+    for (int i = 0; i < count; i++) {
         if (students[i].score > max) {
             max = students[i].score;
         }
