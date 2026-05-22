@@ -7,9 +7,14 @@ int main(int argc, const char* argv[]) {
 
     FILE* fp = fopen(argv[1], "r");
     const char* target_str = argv[2];
-
-
     
+    char line[256];
+    while (fgets(line, sizeof(line), fp)) {
+        if (strstr(line, target_str)) {
+            printf("%s", line);
+        }
+    }
+
     fclose(fp);
 }
 
